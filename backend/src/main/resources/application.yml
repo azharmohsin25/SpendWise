@@ -1,0 +1,44 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: spendwise-api
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/spendwise?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:spendwise}
+    password: ${DB_PASSWORD:spendwise}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+  jackson:
+    time-zone: UTC
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:25}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_SMTP_AUTH:false}
+          starttls:
+            enable: ${MAIL_SMTP_STARTTLS:false}
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+app:
+  jwt:
+    secret: ${JWT_SECRET:spendwise-local-development-secret-change-before-deploy-2026}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  cors:
+    origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:4173}
+  web-url: ${APP_WEB_URL:http://localhost:5173}
+logging:
+  level:
+    org.springframework.security: INFO
